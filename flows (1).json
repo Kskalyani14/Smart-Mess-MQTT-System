@@ -1,0 +1,558 @@
+[
+    {
+        "id": "6b36d2b6148797ed",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "20da33efb6de6afb",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c73945872e14c1aa",
+        "type": "ui_tab",
+        "name": "Smart Mess Dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "819698f2b9a61f6f",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "a288990de52206a6",
+        "type": "ui_group",
+        "name": "Mess Monitoring",
+        "tab": "c73945872e14c1aa",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "632c11b565f65892",
+        "type": "mqtt out",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "topic": "mess/food/status",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "20da33efb6de6afb",
+        "x": 190,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3679c76f577bd948",
+        "type": "inject",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "d0f051efef6174f6"
+            ]
+        ]
+    },
+    {
+        "id": "d0f051efef6174f6",
+        "type": "function",
+        "z": "6b36d2b6148797ed",
+        "name": "function 1",
+        "func": "var status = [\"Cooking\", \"Ready\", \"Out of Stock\"];\nmsg.payload = status[Math.floor(Math.random()*3)];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "632c11b565f65892"
+            ]
+        ]
+    },
+    {
+        "id": "5c67083954ebc7d3",
+        "type": "mqtt in",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "topic": "mess/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "20da33efb6de6afb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 820,
+        "wires": [
+            [
+                "695daf4ccce867b5"
+            ]
+        ]
+    },
+    {
+        "id": "695daf4ccce867b5",
+        "type": "debug",
+        "z": "6b36d2b6148797ed",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 180,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "ab2c497a5a6d6b11",
+        "type": "inject",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "ba94080cc2f4676a"
+            ]
+        ]
+    },
+    {
+        "id": "ba94080cc2f4676a",
+        "type": "function",
+        "z": "6b36d2b6148797ed",
+        "name": "function 2",
+        "func": "msg.payload = Math.floor(Math.random() * 20) + 60;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 440,
+        "wires": [
+            [
+                "8e24ad73f8ce4a94"
+            ]
+        ]
+    },
+    {
+        "id": "8e24ad73f8ce4a94",
+        "type": "mqtt out",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "topic": "mess/food/temperature",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "20da33efb6de6afb",
+        "x": 210,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "3fb97d3350907c56",
+        "type": "inject",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "f60a7d7f64ad358d"
+            ]
+        ]
+    },
+    {
+        "id": "f60a7d7f64ad358d",
+        "type": "function",
+        "z": "6b36d2b6148797ed",
+        "name": "function 3",
+        "func": "msg.payload = Math.floor(Math.random() * 100);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 680,
+        "wires": [
+            [
+                "d1e8263c95e57745"
+            ]
+        ]
+    },
+    {
+        "id": "d1e8263c95e57745",
+        "type": "mqtt out",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "topic": "mess/food/demand",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "20da33efb6de6afb",
+        "x": 190,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "d86f09a8e3c0361e",
+        "type": "mqtt in",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "topic": "mess/food/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "20da33efb6de6afb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 1080,
+        "wires": [
+            [
+                "8ccfe2f090c49e85"
+            ]
+        ]
+    },
+    {
+        "id": "8ccfe2f090c49e85",
+        "type": "ui_gauge",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "group": "a288990de52206a6",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Food Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "50",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 270,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "ac829bb0bde88856",
+        "type": "mqtt in",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "topic": "mess/food/demand",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "20da33efb6de6afb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 1260,
+        "wires": [
+            [
+                "7b3d65acceea6130"
+            ]
+        ]
+    },
+    {
+        "id": "7b3d65acceea6130",
+        "type": "ui_chart",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "group": "a288990de52206a6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Student Demand",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 310,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39ec524d982e2837",
+        "type": "mqtt in",
+        "z": "6b36d2b6148797ed",
+        "name": "",
+        "topic": "mess/food/status",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "20da33efb6de6afb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 1400,
+        "wires": [
+            [
+                "afb69ef5132db52c"
+            ]
+        ]
+    },
+    {
+        "id": "afb69ef5132db52c",
+        "type": "ui_text",
+        "z": "6b36d2b6148797ed",
+        "group": "a288990de52206a6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Chef Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 290,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "4ba9028095ce692a",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
